@@ -1,0 +1,121 @@
+body{
+    margin:0;
+    padding:0;
+    font-family: sans-serif;
+    background-image: url("img/box.jpg");
+   background-size: cover;
+   height: 1835px;
+   background-repeat: no-repeat;
+   font-family: sans-serif;
+}
+.loginBox
+{
+    position: absolute;
+    top: 145%;
+    left: 50%;
+    transform: translate(-50%,-50%);
+    width: 410px;
+    height: 298%;
+    padding: 100px 50px;
+    box-sizing: border-box;
+    background: rgb(0,0,0,.5);
+    
+}
+.error{
+    color:rgb(255, 17, 17);
+}
+.user{
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    overflow: hidden;
+    position: relative;
+    top: calc(-50px/2);
+    left: calc(50% - 50px);
+
+}
+h2{
+    margin:0;
+    color:#01fe87;
+    right:25%;
+    position: absolute;
+    top:2%;
+}
+.loginBox p{
+    margin: 0;
+    padding: 0;
+    font-weight: bold;
+    color: #fff;
+}
+.loginBox input, select,label{
+    width: 100%;
+    margin-bottom: 20px;
+}
+.loginBox input[type="text"],
+.loginBox input[type="number"],
+.loginBox input[type="date"]
+{
+    border: none;
+    border-bottom: 1px solid #fff;
+    background: transparent;
+    outline: none;
+    height: 40px;
+    color: #01fe87;
+    font-size:16px;
+}
+.loginBox input[type="password"]
+{
+    border: none;
+    border-bottom: 1px solid #fff;
+    background: transparent;
+    outline: none;
+    height: 50px;
+    color: #fff;
+    font-size:16px;
+}
+::placeholder{
+    color: #01fe87;
+}
+
+.loginBox input[type="submit"]
+{border:none;
+    outline:none;
+    height: 40px;
+    color: #fff;
+    font-size: 16px;
+    background: #01fe87;
+    cursor: pointer;
+    border-radius: 10px;
+}
+
+.loginBox input[type="reset"]:hover{
+    background:#262626;
+}
+.loginBox input[type="reset"]
+{border:none;
+    outline:none;
+    height: 40px;
+    color: #fff;
+    font-size: 16px;
+    background: #01fe87;
+    cursor: pointer;
+    border-radius: 10px;
+}
+
+.loginBox input[type="submit"]:hover{
+    background:#262626;
+}
+.loginBox p, a{
+    color: #fff;
+    text-align: center;
+}
+select
+{
+    border: none;
+    border-bottom: 1px solid #fff;
+    background: transparent;
+    outline: none;
+    height: 50px;
+    color: #01fe87;
+    font-size:16px;
+}
