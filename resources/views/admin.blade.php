@@ -85,8 +85,9 @@
 							<th>Actions</th>
 
 						</tr>
-					
+						<?php $count = 0;?>
 						@foreach ($users as $item)
+						<?php ++$count;?>
 						
 					</thead>
 
@@ -113,13 +114,147 @@
 							
 							<td><span class="status text-success">&bull;</span> {{$item['status']}}</td>
 							<td>
-								<?php $test = $item->id; ?>
-								<a onclick="edit({ $test })" href="#editEmployeeModal" data-target="#editEmployeeModal" class="edit" data-toggle="modal"><i class="material-icons" data-toggle="tooltip" title="Edit">&#xE254;</i></a>
-								<a onclick="deletes({ $test })" href="#deleteEmployeeModal" class="delete" data-toggle="modal"><i class="material-icons" data-toggle="tooltip" title="Delete">&#xE872;</i></a>
+								<?php $test = $item['id']; ?>
+								<a onclick="edit({{ $test }},{{$count}})" href="#editEmployeeModal" data-target="#editEmployeeModal" class="edit" data-toggle="modal"><i class="material-icons" data-toggle="tooltip" title="Edit">&#xE254;</i></a>
+								
+								<a onclick="deletes({{ $test }})" href="#deleteEmployeeModal" class="delete" data-toggle="modal"><i class="material-icons" data-toggle="tooltip" title="Delete">&#xE872;</i></a>
 							</td>
 							
 						</tr>
 						
+						<!-- Edit Modal HTML -->
+						<div id="editEmployeeModal{{$count}}" class="modal fade">
+							<div class="modal-dialog">
+								<div class="modal-content">
+									<form>
+										<div class="modal-header">
+											<h4 class="modal-title">Edit Student</h4>
+											<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+										</div>
+										<div class="modal-body">
+											<div class="form-group">
+											<label>First Name</label>
+												<input type="text" name="First_Name" value="" class="form-control" placeholder="Enter First Name">
+												<span style="color:red"> @error('First_Name'){{$message}}@enderror</span><br>
+											</div>
+											<div class="form-group">
+											<label>Last Name</label>
+												<input type="text" name="Last_Name" value="" class="form-control" placeholder="Enter Last Name">
+												<span style="color:red"> @error('Last_Name'){{$message}}@enderror</span><br>
+											</div>
+
+											<div class="form-group">
+											<label>Gender</label>
+											<select id="gender" name="gender" class="form-control" class="form-control" value="">
+												<option value="" disabled selected hidden>Choose a gender</option>
+												<option value="female">Female</option>
+												<option value="male">Male</option>
+											</select>
+											
+											<span style="color:red"> @error('gender'){{$message}}@enderror</span><br>
+											</div>
+											<div class="form-group">
+												<label>Date of Birth</label>
+												<input type="date" name="Date_of_Birth" class="form-control" value=""></span>
+												<span style="color:red"> @error('Date_of_Birth'){{$message}}@enderror</span><br>
+											</div>
+											
+											<div class="form-group">
+												<label>Address</label>
+												<input type="text" name="address" value="" class="form-control" placeholder="Enter Address">
+												<span style="color:red"> @error('address'){{$message}}@enderror</span><br>
+											</div>
+											<div class="form-group">
+												<label>Subject</label>
+												<select id="subject" name="subject" class="form-control"  class="form-control" >
+													<option value="" disabled selected hidden>Choose a subject</option>
+													<option value="C">C</option>
+													<option value="Java">Java</option>
+													<option value="SQL">SQL</option>
+													<option value="Phython">Python</option>
+													<option value="HTML/CSS">HTML/CSS</option>
+												</select>
+												<span style="color:red"> @error('subject'){{$message}}@enderror</span><br>
+											</div>
+
+											<div class="form-group">
+											<label>Email</label>
+											<input type="text" name="email" value="" class="form-control"  placeholder="Enter Email">
+											<span style="color:red"> @error('email'){{$message}}@enderror</span><br>
+											</div>
+											
+											<div class="form-group">
+											<label>Telephone No.</label>
+											<input type="text" name="telephone" value="" class="form-control"  placeholder="000-000-0000">
+											<span style="color:red"> @error('telephone'){{$message}}@enderror</span><br>
+											</div>
+											<div class="form-group">
+												<label>Mark 1</label>
+												<input type="text" name="mark1" class="form-control" placeholder="Enter mark" >
+												<span style="color:red"> @error('mark1'){{$message}}@enderror</span><br>
+											</div>
+											<div class="form-group">
+												<label>Mark 2</label>
+												<input type="text" class="form-control" name="mark2" placeholder="Enter mark" >
+												<span style="color:red"> @error('mark2'){{$message}}@enderror</span><br>
+											</div>
+											<div class="form-group">
+												<label>Mark 3</label>
+												<input type="text" class="form-control" name="mark3" placeholder="Enter mark" >
+												<span style="color:red"> @error('mark3'){{$message}}@enderror</span><br>
+											</div>
+											<div class="form-group">
+												<label>Mark 4</label>
+												<input type="text" class="form-control" name="mark4" placeholder="Enter mark" >
+												<span style="color:red"> @error('mark4'){{$message}}@enderror</span><br>
+											</div>
+											<div class="form-group">
+												<label>Average</label>
+												<input type="text" class="form-control" name="avg" placeholder="Enter average" >
+												<span style="color:red"> @error('avg'){{$message}}@enderror</span><br>
+											</div>
+											<div class="form-group">
+												<label>Status</label>
+							
+												<select id="gender" name="status" class="form-control" class="form-control" value="">
+												<option value="" disabled selected hidden>Choose status of student</option>
+												<option value="Active">Active</option>
+												<option value="inactive">Inactive</option>
+											</select>
+											<span style="color:red"> @error('status'){{$message}}@enderror</span><br>
+											</div>
+											<div class="modal-footer">
+										<input type="button" class="btn btn-default" data-dismiss="modal" value="Cancel">
+										<input type="submit" class="btn btn-info" value="Save">
+									</div>
+										</div>
+									</form>
+								</div>
+							</div>
+						</div>
+						<!-- Delete Modal HTML -->
+						<div id="deleteEmployeeModal" class="modal fade">
+							<div class="modal-dialog">
+								<div class="modal-content">
+									<form action="delete" method="POST">
+										@csrf
+										<div class="modal-header">
+											<h4 class="modal-title">Delete Student</h4>
+											<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+										</div>
+										<div class="modal-body">
+											<p>Are you sure you want to delete this Record?</p>
+											<p class="text-warning"><small>This action cannot be undone.</small></p>
+										</div>
+										<div class="modal-footer">
+											<input hidden type="text" name="id" id="test" value="">
+											<input type="button" class="btn btn-default" data-dismiss="modal" value="Cancel">
+											<input type="submit" class="btn btn-danger" value="Delete">
+										</div>
+									</form>
+								</div>
+							</div>
+						</div>
 						@endforeach
 						
 						
@@ -142,149 +277,18 @@
 	</div>
 		
 
-	<!-- Edit Modal HTML -->
-	<div id="editEmployeeModal" class="modal fade">
-		<div class="modal-dialog">
-			<div class="modal-content">
-				<form>
-					<div class="modal-header">
-						<h4 class="modal-title">Edit Student</h4>
-						<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-					</div>
-					<div class="modal-body">
-						<div class="form-group">
-						<label>First Name</label>
-                            <input type="text" name="First_Name" value="" class="form-control" placeholder="Enter First Name">
-                            <span style="color:red"> @error('First_Name'){{$message}}@enderror</span><br>
-                        </div>
-                        <div class="form-group">
-                        <label>Last Name</label>
-                            <input type="text" name="Last_Name" value="" class="form-control" placeholder="Enter Last Name">
-                            <span style="color:red"> @error('Last_Name'){{$message}}@enderror</span><br>
-                        </div>
-
-                        <div class="form-group">
-                        <label>Gender</label>
-                        <select id="gender" name="gender" class="form-control" class="form-control" value="">
-                            <option value="" disabled selected hidden>Choose a gender</option>
-                            <option value="female">Female</option>
-                            <option value="male">Male</option>
-                        </select>
-                        
-                        <span style="color:red"> @error('gender'){{$message}}@enderror</span><br>
-                        </div>
-                        <div class="form-group">
-                            <label>Date of Birth</label>
-                            <input type="date" name="Date_of_Birth" class="form-control" value=""></span>
-                            <span style="color:red"> @error('Date_of_Birth'){{$message}}@enderror</span><br>
-                        </div>
-                        
-                        <div class="form-group">
-                            <label>Address</label>
-                            <input type="text" name="address" value="" class="form-control" placeholder="Enter Address">
-                            <span style="color:red"> @error('address'){{$message}}@enderror</span><br>
-                        </div>
-                        <div class="form-group">
-                            <label>Subject</label>
-                            <select id="subject" name="subject" class="form-control"  class="form-control" >
-                                <option value="" disabled selected hidden>Choose a subject</option>
-                                <option value="C">C</option>
-                                <option value="Java">Java</option>
-                                <option value="SQL">SQL</option>
-                                <option value="Phython">Python</option>
-                                <option value="HTML/CSS">HTML/CSS</option>
-                            </select>
-                            <span style="color:red"> @error('subject'){{$message}}@enderror</span><br>
-                        </div>
-
-                        <div class="form-group">
-                        <label>Email</label>
-                        <input type="text" name="email" value="" class="form-control"  placeholder="Enter Email">
-                        <span style="color:red"> @error('email'){{$message}}@enderror</span><br>
-                        </div>
-                        
-                        <div class="form-group">
-                        <label>Telephone No.</label>
-                        <input type="text" name="telephone" value="" class="form-control"  placeholder="000-000-0000">
-                        <span style="color:red"> @error('telephone'){{$message}}@enderror</span><br>
-                        </div>
-                        <div class="form-group">
-                            <label>Mark 1</label>
-                            <input type="text" name="mark1" class="form-control" placeholder="Enter mark" >
-                            <span style="color:red"> @error('mark1'){{$message}}@enderror</span><br>
-                        </div>
-                        <div class="form-group">
-                            <label>Mark 2</label>
-                            <input type="text" class="form-control" name="mark2" placeholder="Enter mark" >
-                            <span style="color:red"> @error('mark2'){{$message}}@enderror</span><br>
-                        </div>
-                        <div class="form-group">
-                            <label>Mark 3</label>
-                            <input type="text" class="form-control" name="mark3" placeholder="Enter mark" >
-                            <span style="color:red"> @error('mark3'){{$message}}@enderror</span><br>
-                        </div>
-                        <div class="form-group">
-                            <label>Mark 4</label>
-                            <input type="text" class="form-control" name="mark4" placeholder="Enter mark" >
-                            <span style="color:red"> @error('mark4'){{$message}}@enderror</span><br>
-                        </div>
-                        <div class="form-group">
-                            <label>Average</label>
-                            <input type="text" class="form-control" name="avg" placeholder="Enter average" >
-                            <span style="color:red"> @error('avg'){{$message}}@enderror</span><br>
-                        </div>
-                        <div class="form-group">
-                            <label>Status</label>
-        
-                            <select id="gender" name="status" class="form-control" class="form-control" value="">
-                            <option value="" disabled selected hidden>Choose status of student</option>
-                            <option value="Active">Active</option>
-                            <option value="inactive">Inactive</option>
-                        </select>
-                        <span style="color:red"> @error('status'){{$message}}@enderror</span><br>
-                        </div>
-						<div class="modal-footer">
-					<input type="button" class="btn btn-default" data-dismiss="modal" value="Cancel">
-					<input type="submit" class="btn btn-info" value="Save">
-				</div>
-                    </div>
-				</form>
-			</div>
-		</div>
-	</div>
-	<!-- Delete Modal HTML -->
-	<div id="deleteEmployeeModal" class="modal fade">
-		<div class="modal-dialog">
-			<div class="modal-content">
-				<form action="delete" method="POST">
-					@csrf
-					<div class="modal-header">
-						<h4 class="modal-title">Delete Student</h4>
-						<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-					</div>
-					<div class="modal-body">
-						<p>Are you sure you want to delete this Record?</p>
-						<p class="text-warning"><small>This action cannot be undone.</small></p>
-					</div>
-					<div class="modal-footer">
-						<input hidden type="text" name="id" id="test" value="">
-						<input type="button" class="btn btn-default" data-dismiss="modal" value="Cancel">
-						<input type="submit" class="btn btn-danger" value="Delete">
-					</div>
-				</form>
-			</div>
-		</div>
-	</div>
 	<script src="https://cdn.datatables.net/1.10.25/js/jquery.dataTables.min.js"></script>
 	<script src="https://cdn.datatables.net/1.10.25/js/dataTables.bootstrap4.min.js"></script>
 	<script>
 		function deletes(clr) {
-			document.getElementById('test').value = clr;
-			console.log(clr);
+			var check = document.getElementById('test').value = clr;
+			console.log(check);
 		}
-		function edit(clr) {
-			document.getElementById('editEmployeeModal').style.display = 'block'
-			console.log("edit");
+		function edit(clr,cout) {
+			var value = 'editEmployeeModal'
+			var value1 = value.concat(cout)
+			document.getElementById(value1).style.display = 'block'
+			console.log(cout);
 		}
 	</script>
 

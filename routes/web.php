@@ -49,10 +49,9 @@ Route::get('/users', function () {
  Route::post('/Register',[FormController::class,'register'])->name('register.user');
 
  Route::get('/admin',[Userdelete::class,'display'])->name('admin');
- route::post('/delete',[Userdelete::class,'delete'])->name('delete');
- route::get('edit/{id}',[Userdelete::class,'edit']);
+ route::post('/delete',[Userdelete::class,'delete']);
+//  route::get('edit/{id}',[Userdelete::class,'edit']);
  route::post('/admin',[Userdelete::class,'store']);
-//  Route::get('/admin',[Userdelete::class,'autocomplete'])->name('admin');
 
  Route::get('/contactform', [ContactUsFormController::class, 'createForm']);
 

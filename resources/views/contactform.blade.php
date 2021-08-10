@@ -148,6 +148,9 @@ integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQV
                     <li><i class="fa fa-print mr-2"></i> + 331 114 1516</li>
                 </ul>
             </div>
+            <div class="text-center">
+            <img class="img-fluid contact-image" alt="Responsive image" src="https://csds.qld.edu.au/sdc/resources/images/find-us-map.jpg" class="rounded" alt="...">
+          </div>
             <div class="col-12 copyright mt-3">
                 <p class="float-left">
                     <a href="/">Back to home</a>

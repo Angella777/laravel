@@ -23,3 +23,8 @@ footer {
 footer a {
     color: #f8f9fa!important
 }
+.contact-image {
+    height:170px;
+    width:100%;
+    background-size:cover;
+  }

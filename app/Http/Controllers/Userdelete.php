@@ -47,6 +47,7 @@ class Userdelete extends Controller
     {
         $id = $request->id;
     $data1=User::find($id);
+    // dd($data1);
     $data1->delete();
     $data= User::all();
 

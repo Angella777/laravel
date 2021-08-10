@@ -30,8 +30,9 @@ class FormController extends Controller
             if(Hash::check($request->password,$checkinfo->password)){
                 $request->session()->put('loggeduser', $checkinfo->id);
                 if($checkinfo->user_type == 'Admin'){
-                    $users = User::all();
-                    return view('admin',['users'=>$users]);
+                    
+                    return redirect('/admin');
+            
                 }elseif($checkinfo->user_type == 'User'){
                     return view('profilepagedisplay',['checkinfo'=> $checkinfo]);
                 }
