@@ -61,6 +61,7 @@ class Userdelete extends Controller
         $data2=User::find($id);
         $data2->edit();
         $data=User::all();
+      
 
         return back()->with('admin',[
             'users'=>$data
