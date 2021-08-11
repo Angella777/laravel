@@ -160,7 +160,8 @@
 	<div id="editEmployeeModal" class="modal fade">
 		<div class="modal-dialog">
 			<div class="modal-content">
-				<form>
+				<form action="/edit" method="post">
+				@csrf
 					<div class="modal-header">
 						<h4 class="modal-title">Edit Student</h4>
 						<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
@@ -201,7 +202,7 @@
                         <div class="form-group">
                             <label>Subject</label>
                             <select name="subject" class="form-control"  class="form-control" >
-                                <option id="subject" value="" disabled selected hidden>Choose a subject</option>
+                                <option id="subject" value="">Choose a subject</option>
                                 <option value="C">C</option>
                                 <option value="Java">Java</option>
                                 <option value="SQL">SQL</option>
@@ -258,6 +259,7 @@
                         <span style="color:red"> @error('status'){{$message}}@enderror</span><br>
                         </div>
 						<div class="modal-footer">
+					<input hidden type="text" name="id" id="edit-id" value="">
 					<input type="button" class="btn btn-default" data-dismiss="modal" value="Cancel">
 					<input type="submit" class="btn btn-info" value="Save">
 				</div>
@@ -301,17 +303,20 @@
 			document.getElementById('firstname').value = firstname
 			document.getElementById('lastname').value = lastname
 			document.getElementById('genderd').innerText = gender
+			document.getElementById('genderd').value = gender
 			document.getElementById('email').value = email
-			console.log(dob)
+			// console.log(clr)
 			document.getElementById('dob').value = dob
 			document.getElementById('address').value = address
 			document.getElementById('telephone').value = telephone
 			document.getElementById('subject').innerText = subject
+			document.getElementById('subject').value = subject
 			document.getElementById('mark1').value = mark1
 			document.getElementById('mark2').value = mark2
 			document.getElementById('mark3').value = mark3
 			document.getElementById('mark4').value = mark4
 			document.getElementById('average').value = average
+			document.getElementById('edit-id').value = clr
 			
 			// console.log(firstname);
 		}

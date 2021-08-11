@@ -50,6 +50,7 @@ Route::get('/users', function () {
 
  Route::get('/admin',[Userdelete::class,'display'])->name('admin');
  route::post('/delete',[Userdelete::class,'delete']);
+ route::post('/edit',[Userdelete::class,'edit']);
 //  route::get('edit/{id}',[Userdelete::class,'edit']);
  route::post('/admin',[Userdelete::class,'store']);
 

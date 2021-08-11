@@ -58,8 +58,21 @@ class Userdelete extends Controller
     function edit(Request $request)
     {
         $id= $request->id;
-        $data2=User::find($id);
-        $data2->edit();
+        // dd($request);
+        
+        $user= User::find($id) ;
+        $user-> firstname = $request-> First_Name;
+        $user-> lastname = $request-> Last_Name;
+        // $user-> username = $request-> username;
+        // $user-> user_type = $request-> user_type;
+        $user-> gender = $request-> gender;
+        $user-> Date_of_Birth = $request-> Date_of_Birth;
+        $user-> address = $request-> address;
+        $user-> subject = $request-> subject;
+        $user-> email = $request-> email;
+        $user-> telephone = $request-> telephone;
+        $user->save();
+        // $data2->edit();
         $data=User::all();
       
 
