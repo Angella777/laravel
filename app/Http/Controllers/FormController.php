@@ -25,17 +25,25 @@ class FormController extends Controller
         $checkinfo = User::where('username','=',$request->username)->first();
         if(!$checkinfo){
             $fail= 'Username not registered';
-            return view('Log-in',['$fail'=>$fail]);
+            return view('Log-in',['fail'=>$fail]);
         }else{
             if(Hash::check($request->password,$checkinfo->password)){
                 $request->session()->put('loggeduser', $checkinfo->id);
-                if($checkinfo->user_type == 'Admin'){
+                // dd($request->user_type);
+                if($checkinfo->user_type != $request->user_type){
+                    $fail1= 'Please select correct user type';
+                    return view('Log-in',['fail1'=>$fail1]);
+                } else {
+                    if($checkinfo->user_type === 'Admin'){
                     
-                    return redirect('/admin');
-            
-                }elseif($checkinfo->user_type == 'User'){
-                    return view('profilepagedisplay',['checkinfo'=> $checkinfo]);
+                        return redirect('/admin');
+                
+                    }elseif($checkinfo->user_type === 'User'){
+                        return view('profilepagedisplay',['checkinfo'=> $checkinfo]);
+                    }
                 }
+                
+                
             }else{
                 $fail='Password is incorrect';
                 return view('Log-in',['fail'=>$fail]);

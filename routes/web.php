@@ -85,7 +85,7 @@ Route::get('profiledelete/{id}',[userDisplayController::class,'delete']);
 Route::get('/profilepage',[userDisplayController::class,'addmarks']);
 
 Route::get('addstudentmodal', [addstudentContoller::class, 'create']);
-Route::post('addstudentmodal', [addstudentContoller::class, 'store']);
+Route::post('addstudentmodal', [addstudentContoller::class, 'store'])->name('store-stud');
 
 
 Route::get('/TestMail', function(){

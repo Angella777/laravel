@@ -23,7 +23,7 @@
             @if (session('status'))
             <h6 class="alert alert-success">{{ session('status') }}</h6>
             @endif
-            <form action="/store-stud" method="POST">
+            <form action="{{route('store-stud')}}" method="POST">
                 @csrf
                 <div class="modal-header">
                 
@@ -43,12 +43,16 @@
                             <input type="text" name="Last_Name" value="" class="form-control" placeholder="Enter Last Name">
                             <span style="color:red"> @error('Last_Name'){{$message}}@enderror</span><br>
                         </div>
-
+                        <div class="form-group">
+                        <label>Username</label>
+                            <input type="text" name="username" value="" class="form-control" placeholder="Enter Last Name">
+                            <span style="color:red"> @error('Last_Name'){{$message}}@enderror</span><br>
+                        </div>
                         <div class="form-group">
                         <label>Gender</label>
                         <select id="gender" name="gender" class="form-control" class="form-control" value="">
                             <option value="" disabled selected hidden>Choose a gender</option>
-                            <option value="female">Female</option>
+                            <option  value="female">Female</option>
                             <option value="male">Male</option>
                         </select>
                         
@@ -56,7 +60,7 @@
                         </div>
                         <div class="form-group">
                             <label>Date of Birth</label>
-                            <input type="date" name="Date_of_Birth" class="form-control" value=""></span>
+                            <input type="date" name="date_of_birth" class="form-control" value=""></span>
                             <span style="color:red"> @error('Date_of_Birth'){{$message}}@enderror</span><br>
                         </div>
                         
@@ -117,7 +121,7 @@
                         <div class="form-group">
                             <label>Status</label>
         
-                            <select id="gender" name="status" class="form-control" class="form-control" value="">
+                            <select id="status" name="status" class="form-control" class="form-control" value="">
                             <option value="" disabled selected hidden>Choose status </option>
                             <option value="Active">Active</option>
                             <option value="inactive">Inactive</option>

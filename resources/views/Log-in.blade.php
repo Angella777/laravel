@@ -19,7 +19,8 @@
         <div class="loginBox">
             <h2>LOGIN </h2>
             @if (isset($fail))
-                {{$fail}}
+            <span style="color:red">{{$fail}}</span>
+                
             @endif
             <form action="login" method="post">
                 @csrf
@@ -35,7 +36,12 @@
                     <option value="User">Student</option>
                     <option value="Admin">Teacher</option>
                                     </select><br><br>
-                <span style="color:red"> @error('user_type'){{$message}}@enderror</span>
+
+                <span style="color:red"> @error('user_type'){{$message}}@enderror 
+                    @if (isset($fail1))
+                        <span style="color:red">{{$fail1}}</span>
+                    @endif
+                </span>
                 <input type="password" name="password" placeholder="Enter password"><br>
                 <span style="color:red"> @error('password'){{$message}}@enderror</span>
                 <input type="submit" value="Login"><br>

@@ -23,19 +23,30 @@
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
     <script src="https://cdn.bootcss.com/jquery/2.2.4/jquery.min.js"></script>
 </head>
-<!-- <style>
-    .col-xs-12 button{
-        color:blue;
-    }
-</style> -->
 
+<style>
+    .row{
+        font-size: 15px;
+    }
+    .btn{
+        font-size: 20px;
+    
+    }
+    h1{
+        font-size: 90px;
+        font-family:Alfa Slab One;
+        font-weight: 70px;
+        
+    }
+   
+</style>
 <hr>
 @include('sweet::alert')
-<a href={{route('logout')}}>logout</a>
+<a  class="btn btn-dark" href={{route('logout')}}>logout</a>
     <div class="container bootstrap snippet">
         <div class="row">
             <div class="col-sm-10"><h1>Welcome {{$checkinfo['username']}}</h1></div>
-            <div class="col-sm-2"><a href="/users" class="pull-right"><img title="profile image" class="img-circle img-responsive" src="../logoo.png"></a></div>
+            <div class="col-sm-2"><a href="/" class="pull-right"><img title="profile image" class="img-circle img-responsive" src="../logoo.png"></a></div>
     </div>
     <div class="row">
   		<div class="col-sm-3"><!--left col-->
@@ -139,8 +150,8 @@
                       <div class="form-group">
                            <div class="col-xs-12">
                                 <br>
-                              	<button class="" type="submit"><a href={{"profilepage/".$checkinfo['id']}}>Edit Profile</a></button>
-                                  <button class="" type="delete" ><a href={{"profiledelete/".$checkinfo['id']}}>Delete Profile</a></button>
+                              	<a class="btn btn-primary" href={{"profilepage/".$checkinfo['id']}}>Edit Profile</a>
+                                <a  class="btn btn-danger" href={{"profiledelete/".$checkinfo['id']}}>Delete Profile</a></button>
                             </div>
                       </div>
                 	</form>
@@ -150,23 +161,4 @@
 
         </div><!--/col-9-->
     </div><!--/row-->
-    <!-- $(document).ready(function() {
-
     
-var readURL = function(input) {
-    if (input.files && input.files[0]) {
-        var reader = new FileReader();
-
-        reader.onload = function (e) {
-            $('.avatar').attr('src', e.target.result);
-        }
-
-        reader.readAsDataURL(input.files[0]);
-    }
-}
-
-
-$(".file-upload").on('change', function(){
-    readURL(this);
-});
-});                                

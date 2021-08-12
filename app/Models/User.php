@@ -35,12 +35,6 @@ class User extends Authenticatable
         'email',
         'telephone',
         'password',
-        'mark1',
-        'mark2',
-        'mark3',
-        'mark4',
-        'status',
-        'avg'
     ];
 
     /**

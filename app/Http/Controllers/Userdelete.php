@@ -63,8 +63,6 @@ class Userdelete extends Controller
         $user= User::find($id) ;
         $user-> firstname = $request-> First_Name;
         $user-> lastname = $request-> Last_Name;
-        // $user-> username = $request-> username;
-        // $user-> user_type = $request-> user_type;
         $user-> gender = $request-> gender;
         $user-> Date_of_Birth = $request-> Date_of_Birth;
         $user-> address = $request-> address;
@@ -72,7 +70,18 @@ class Userdelete extends Controller
         $user-> email = $request-> email;
         $user-> telephone = $request-> telephone;
         $user->save();
-        // $data2->edit();
+        if ($request->mark1 != "null" && $request->mark2 != "null" && $request->mark3 != "null" && $request->mark4 != "null" && $request->avg != "null" && $request->status != "null" && $request->user_id != "null") {
+            dd('yes');
+            // $gardes = new mark; 
+            // $gardes->mark1 = $request->mark1;
+            // $gardes->mark2 = $request->mark2;
+            // $gardes->mark3 = $request->mark3;
+            // $gardes->mark4 = $request->mark4;
+            // $gardes->avg = $request->avg;
+            // $gardes->status = $request->status;
+            // $gardes->user_id = $request->user_id;
+            // $gardes->save();
+        }
         $data=User::all();
       
 

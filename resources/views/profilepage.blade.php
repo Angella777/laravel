@@ -43,7 +43,7 @@
   		<div class="col-sm-3"><!--left col-->
               
           <div class="pic">
-                <img src="http://ssl.gstatic.com/accounts/ui/avatar_2x.png" value="{{$checkinfo['image']}}" class="avatar img-circle img-thumbnail" alt="avatar" onClick="triggerClick()" id="profileDisplay" name="image" />
+                <img src="http://localhost/laravel/public/image/{{$checkinfo['image']}}" value="" class="avatar img-circle img-thumbnail" alt="avatar" onClick="triggerClick()" id="profileDisplay" name="image" />
                  <input hidden type="file" name="profileImage" value="" onChange="displayImage(this)" id="profileImage" class="form-control">
             </div> <p style="text-align:center">Upload different photo</p>
 
@@ -127,20 +127,7 @@
                               <input type="text" class="form-control" name="address"  value="{{$checkinfo['address']}}">
                           </div>
                       </div>
-                      <div class="form-group">
-                          
-                          <div class="col-xs-6">
-                              <label for="password"><h4>Password</h4><span style="color:red">@error('password'){{$message}}@enderror</span></label>
-                              <input type="password" class="form-control" name="password"  value="{{$checkinfo['password']}}" >
-                          </div>
-                      </div>
-                      <div class="form-group">
-                          
-                          <div class="col-xs-6">
-                            <label for="password2"><h4>Confirm Password</h4><span style="color:red">@error('Confirm_password'){{$message}}@enderror</span></label>
-                              <input type="password" class="form-control" name="Confirm_password">
-                          </div>
-                      </div>
+                    
                       <div class="form-group">
                            <div class="col-xs-12">
                                 <br>
