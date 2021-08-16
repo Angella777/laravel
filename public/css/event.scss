@@ -1,0 +1,353 @@
+$font-primary: "Source Sans Pro", Arial, Tahoma, sans-serif;
+$color-primary: #08cec2;
+$color-secondary: #ffdb3b;
+$color-tertiary: #ff1d87;
+$color-quadinary: #0086e3;
+$color-shadow: #e6e6e6;
+$color-light: #bcbcbc;
+$color-dark: #565656;
+$color-background: #ffffff;
+$color-black: #000000;
+$color-white: #ffffff;
+
+@mixin tablet-screen {
+  @media (max-width: 1100px) {
+    @content;
+  }
+}
+
+@mixin mobile-screen {
+  @media (max-width: 600px) {
+    @content;
+  }
+}
+
+html {
+  box-sizing: border-box;
+}
+
+*,
+*::after,
+*::before {
+  box-sizing: inherit;
+}
+
+/* spinner */
+.arlo .arlo-feature .arlo-loading-overlay {
+  position: fixed;
+  z-index: 999;
+  height: 2em;
+  width: 2em;
+  overflow: show;
+  margin: auto;
+  bottom: 50%;
+  top: 50%;
+  left: 50%;
+  right: 50%;
+}
+
+.arlo .arlo-feature .arlo-loading-overlay:before {
+  content: "";
+  display: block;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(255, 255, 255, 0.3);
+}
+
+.arlo .arlo-feature .arlo-loading-overlay:not(:required) {
+  font: 0/0 a;
+  color: transparent;
+  text-shadow: none;
+  background-color: transparent;
+  border: 0;
+}
+
+.arlo .arlo-feature .arlo-loading-overlay:not(:required):after {
+  content: "";
+  display: block;
+  font-size: 10px;
+  width: 1em;
+  height: 1em;
+  margin-top: -0.5em;
+  -webkit-animation: spinner 1500ms infinite linear;
+  animation: spinner 1500ms infinite linear;
+  border-radius: 0.5em;
+  box-shadow: rgba(0, 0, 0, 0.75) 1.5em 0 0 0,
+    rgba(0, 0, 0, 0.75) 1.1em 1.1em 0 0, rgba(0, 0, 0, 0.75) 0 1.5em 0 0,
+    rgba(0, 0, 0, 0.75) -1.1em 1.1em 0 0, rgba(0, 0, 0, 0.75) -1.5em 0 0 0,
+    rgba(0, 0, 0, 0.75) -1.1em -1.1em 0 0, rgba(0, 0, 0, 0.75) 0 -1.5em 0 0,
+    rgba(0, 0, 0, 0.75) 1.1em -1.1em 0 0;
+}
+
+@-webkit-keyframes spinner {
+  0% {
+    -webkit-transform: rotate(0deg);
+    transform: rotate(0deg);
+  }
+  100% {
+    -webkit-transform: rotate(360deg);
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes spinner {
+  0% {
+    -webkit-transform: rotate(0deg);
+    transform: rotate(0deg);
+  }
+  100% {
+    -webkit-transform: rotate(360deg);
+    transform: rotate(360deg);
+  }
+}
+
+.arlo {
+  font-family: $font-primary;
+}
+
+.arlo .arlo-upcoming-heading {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+}
+
+.arlo ul.arlo-event-list,
+.arlo.arlo-upcoming .arlo-filter-unordered-list {
+  padding-left: 0;
+  margin: 0;
+  display: flex;
+  list-style: none;
+  flex-wrap: wrap;
+  @include mobile-screen(){
+    display: block;
+}
+@include tablet-screen(){
+    display: block;
+}
+}
+
+
+.arlo ul.arlo-event-list li {
+  flex: 0 0 50%;
+  margin-top: 20px;
+}
+
+.arlo.arlo-upcoming h1 a,
+.arlo.arlo-upcoming h1 a:hover {
+  color: $color-black;
+  text-decoration: none;
+  cursor: default;
+  font-weight: normal;
+  font-size: 40px;
+}
+
+.arlo.arlo-upcoming .arlo-introduction p {
+  margin-bottom: 35px;
+}
+
+.arlo.arlo-upcoming a {
+  color: $color-tertiary;
+  text-decoration: none;
+}
+
+.arlo.arlo-upcoming .arlo-filters .arlo-filter-unordered-list li {
+  margin-right: 10px;
+  border-radius: 30px;
+  position: relative;
+  background-color: $color-primary;
+  color: $color-white;
+  padding: 10px 20px;
+  cursor: pointer;
+  box-shadow: inset 0 0 0 1px rgba(0, 0, 0, 0.03);
+  background-repeat: repeat-x;
+  margin-bottom: 5px;
+  display: inline-block;
+  &:hover {
+    opacity: 0.7;
+  }
+}
+
+.arlo.arlo-upcoming .arlo-region-selector select {
+  cursor: pointer;
+  font-size: 15px;
+  padding: 12px 30px;
+  border-radius: 30px;
+  font-style: normal;
+  display: inline-block;
+  text-decoration: none;
+  width: 100%;
+  margin: 0 auto 40px;
+  border: none;
+  background-color: $color-shadow;
+  display: block;
+  background-repeat: no-repeat;
+  background-position: 90% center;
+  &:hover {
+    opacity: 0.7;
+  }
+}
+
+.arlo.arlo-upcoming .arlo-event-listitem .arlo-date {
+  width: 60px;
+  margin-right: 20px;
+}
+
+.arlo.arlo-upcoming .arlo-event-listitem .arlo-date .arlo-date-container {
+  display: inline-block;
+  text-align: center;
+  vertical-align: middle;
+  margin-top: 7px;
+  box-shadow: 0 0 4px rgba(0, 0, 0, 0.1);
+  width: 100%;
+  margin-left: 4px;
+}
+
+.arlo.arlo-upcoming .arlo-event-listitem .arlo-date .arlo-start-month {
+  text-transform: uppercase;
+  font-size: 20px;
+  padding-bottom: 3px;
+  color: $color-white;
+  background-color: $color-primary;
+}
+
+.arlo.arlo-upcoming .arlo-event-listitem .arlo-date .arlo-start-date {
+  font-size: 32px;
+  vertical-align: top;
+  line-height: 1;
+  padding: 10px;
+  color: $color-light;
+}
+
+.arlo .arlo-listitem.arlo-clearfix {
+  display: flex;
+}
+
+.arlo.arlo-upcoming .arlo-event-listitem .arlo-title .arlo-name a {
+  text-decoration: none;
+  color: $color-black;
+  font-size: 25px;
+  &:hover {
+    opacity: 0.7;
+  }
+}
+
+.arlo.arlo-upcoming .arlo-event-listitem .arlo-detail {
+  font-style: italic;
+  line-height: 160%;
+}
+
+.arlo.arlo-upcoming .arlo-event-listitem .arlo-detail * {
+  padding: 2px 0;
+}
+
+.arlo.arlo-upcoming .arlo-event-listitem .fa {
+  margin-right: 3px;
+  font-size: 14px;
+}
+
+.arlo.arlo-upcoming .arlo-event-listitem .arlo-offer-container,
+.arlo.arlo-upcoming .arlo-event-listitem .arlo-offer-li {
+  font-size: 20px;
+  line-height: 25px;
+  font-style: normal;
+  color: $color-black;
+}
+
+.arlo.arlo-upcoming .arlo-event-listitem .arlo-summary {
+  font-style: normal;
+}
+
+.arlo.arlo-upcoming .arlo-event-listitem .arlo-detail .arlo-location,
+.arlo.arlo-upcoming .arlo-event-listitem .arlo-detail .arlo-duration,
+.arlo.arlo-upcoming .arlo-event-listitem .arlo-detail .arlo-online {
+  margin-right: 10px;
+  text-decoration: none;
+}
+
+.arlo.arlo-upcoming .arlo-title .arlo-name a,
+.arlo.arlo-upcoming .arlo-text-color-normal,
+.fa {
+  color: $color-light;
+}
+
+.arlo.arlo-upcoming
+  .arlo-event-listitem
+  .arlo-detail
+  .arlo-registration-actions
+  .arlo-event-register {
+  color: $color-tertiary;
+}
+
+.arlo.arlo-upcoming
+  .arlo-event-listitem
+  .arlo-detail
+  .arlo-registration-actions
+  > a {
+  cursor: pointer;
+  font-size: 15px;
+  padding: 12px 30px;
+  border-radius: 30px;
+  font-style: normal;
+  display: inline-block;
+  text-decoration: none;
+  color: $color-dark;
+  background-color: $color-shadow;
+  &:hover {
+    opacity: 0.7;
+  }
+}
+
+.arlo.arlo-upcoming .arlo-event-listitem .arlo-detail .arlo-places-remaining {
+  margin-left: 20px;
+  padding: 17px 16px;
+  color: $color-primary;
+}
+
+.arlo.arlo-upcoming .arlo-view-all a {
+    display: inline-block;
+    vertical-align: baseline;
+    zoom: 1;
+    position: relative;
+    padding: 0 20px;
+    text-transform: uppercase;
+    font-size: 15px;
+    &:hover {
+        color: $color-primary;
+    }
+}
+
+.arlo.arlo-upcoming .arlo-view-all {
+    position: relative;
+    overflow: hidden;
+    text-align: center;
+}
+
+.arlo.arlo-upcoming .arlo-view-all a:before, .arlo.arlo-upcoming .arlo-view-all a:after {
+    content: '';
+    display: block;
+    width: 1000px;
+    position: absolute;
+    top: 0.73em;
+    border-top: 1px solid #efefef;
+}
+
+.arlo.arlo-upcoming .arlo-view-all a:before {
+    right: 100%;
+}
+
+.arlo.arlo-upcoming .arlo-view-all a:after {
+    left: 100%;
+}
+
+.arlo .arlo-original-price {
+    text-decoration: line-through;
+    color: black;
+}
+
+.arlo.arlo-upcoming .arlo-event-listitem .arlo-offer-container {
+    color: $color-secondary;
+}

@@ -4,9 +4,8 @@ namespace App\Http\Middleware;
 
 use Closure;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Auth;
 
-class accessage
+class accesspage
 {
     /**
      * Handle an incoming request.
@@ -17,10 +16,6 @@ class accessage
      */
     public function handle(Request $request, Closure $next)
     {
-        // if($request->age && $request->age<18) {
-        //     return redirect('restrict');
-        // }
-        // dd( Auth::user());
         return $next($request);
     }
 }

@@ -46,7 +46,7 @@
                         <div class="form-group">
                         <label>Username</label>
                             <input type="text" name="username" value="" class="form-control" placeholder="Enter Last Name">
-                            <span style="color:red"> @error('Last_Name'){{$message}}@enderror</span><br>
+                            <span style="color:red"> @error('username'){{$message}}@enderror</span><br>
                         </div>
                         <div class="form-group">
                         <label>Gender</label>
@@ -113,11 +113,7 @@
                             <input type="text" class="form-control" name="mark_4" placeholder="Enter mark" >
                             <span style="color:red"> @error('mark_4'){{$message}}@enderror</span><br>
                         </div>
-                        <div class="form-group">
-                            <label>Average</label>
-                            <input type="text" class="form-control" name="avg" placeholder="Enter average" >
-                            <span style="color:red"> @error('avg'){{$message}}@enderror</span><br>
-                        </div>
+                     
                         <div class="form-group">
                             <label>Status</label>
         

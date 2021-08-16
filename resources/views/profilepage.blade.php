@@ -57,16 +57,16 @@
           
           <ul class="list-group">
             <li class="list-group-item text-muted">Final Marks <i class="fa fa-dashboard fa-1x"></i></li>
-            <li class="list-group-item text-right"><span class="pull-left"><strong>Mark1</strong></span> 125</li>
-            <li class="list-group-item text-right"><span class="pull-left"><strong>Mark2</strong></span> 13</li>
-            <li class="list-group-item text-right"><span class="pull-left"><strong>Mark3</strong></span> 37</li>
-            <li class="list-group-item text-right"><span class="pull-left"><strong>Mark4</strong></span> 78</li>
+            <li class="list-group-item text-right"><span class="pull-left"><strong>Mark1</strong></span>{{$mark1}}</li>
+            <li class="list-group-item text-right"><span class="pull-left"><strong>Mark2</strong></span> {{$mark2}}</li>
+            <li class="list-group-item text-right"><span class="pull-left"><strong>Mark3</strong></span> {{$mark3}}</li>
+            <li class="list-group-item text-right"><span class="pull-left"><strong>Mark4</strong></span> {{$mark4}}</li>
           </ul> 
                
           <div class="panel panel-default">
             <div class="panel-heading">Average</div>
             <div class="panel-body">
-            	<i class="fa fa-facebook fa-2x"></i>344 <i class="fa fa-github fa-2x"></i> <i class="fa fa-twitter fa-2x"></i> <i class="fa fa-pinterest fa-2x"></i> <i class="fa fa-google-plus fa-2x"></i>
+            	<i class="fa fa-facebook fa-2x"></i>{{$avg}} <i class="fa fa-github fa-2x"></i> <i class="fa fa-twitter fa-2x"></i> <i class="fa fa-pinterest fa-2x"></i> <i class="fa fa-google-plus fa-2x"></i>
             </div>
           </div>
           
@@ -81,8 +81,14 @@
           <div class="tab-content">
             <div class="tab-pane active" id="home">
                 <hr>
-                  <form class="form" action="/profilepage" method="post" id="registrationForm">
+                  <form class="form" action="/user/profilepage" method="post" id="registrationForm">
                   @csrf
+                  @if(session()->has('error'))
+                        <div class="alert" role="alert">
+                            <span class="closebtn" onclick="this.parentElement.style.display='none';">&times;</span> 
+                            {{ session()->get('error') }}
+                        </div>
+                    @endif
                   <input type="hidden" name="id" value="{{$checkinfo['id']}}">
                       <div class="form-group">
                         
@@ -132,7 +138,7 @@
                            <div class="col-xs-12">
                                 <br>
                               	<button class="btn btn-lg btn-success" type="submit"><i class="glyphicon glyphicon-ok-sign"></i> Save</button>
-                                   <button class="btn btn-lg" type="cancel"><i class="glyphicon glyphicon-cancel"><a href="/profilepagedisplay"></i> Back</a></button>
+                                   <button class="btn btn-lg" type="cancel"><i class="glyphicon glyphicon-cancel"><a href="/user/{{$checkinfo['username']}}"></i> Back</a></button>
                             </div>
                       </div>
                 	</form>

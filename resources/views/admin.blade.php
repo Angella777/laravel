@@ -42,7 +42,12 @@
   </div>
   		
 	</form>
-	
+	@if(session()->has('error'))
+	<div class="alert" role="alert">
+		<span class="closebtn" onclick="this.parentElement.style.display='none';">&times;</span> 
+		{{ session()->get('error') }}
+	</div>
+@endif
 	<!--  -->
 	<div class="container-fluid">
 		<div class="table-responsive">
@@ -87,60 +92,77 @@
 
 						</tr>
 					
-						@foreach ($users as $item)
-						
 					</thead>
-
-					<tbody>
 					
-					
-						<tr>
-
-							<td>{{$item['id']}}</td>
-							<td>{{$item['firstname']}}</td>
-							<td>{{$item['lastname']}}</td>
-							<td>{{$item['username']}}</td>
-							<td>{{$item['gender']}}</td>
-							<td>{{$item['date_of_birth']}}</td>
-							<td>{{$item['email']}}</td>
-							<td>{{$item['address']}}</td>
-							<td>{{$item['telephone']}}</td>
-							<td>{{$item['subject']}}</td>
-							<td>{{$item['mark1']}}</td>
-							<td>{{$item['mark2']}}</td>
-							<td>{{$item['mark3']}}</td>
-							<td>{{$item['mark4']}}</td>
-							<td>{{$item['average']}}</td>
-							
-							
-							<td><span class="status text-success">&bull;</span> {{$item['status']}}</td>
-							<td>
+					@foreach ($users as $item)
+					<?php 
+						$mark1 = "";
+						$mark2 = "";
+						$mark3 = "";
+						$mark4 = "";
+						$average= "";
+						$status= "";
+					?>
+						@foreach ($marks as $mark)
+						{{-- {{dd($mark->user_id)}} --}}
+							@if ($item->id == $mark->user_id)
 								<?php 
-								$test = $item['id']; 
-								$firstname = $item['firstname']; 
-								$lastname = $item['lastname']; 
-								$username = $item['username'];
-								$gender = $item['gender'];
-								$dob = $item['date_of_birth'];
-								$email = $item['email'];
-								$address = $item['address'];
-								$telephone = $item['telephone'];
-								$subject = $item['subject'];
-								$mark1 = $item['mark1'];
-								$mark2 = $item['mark2'];
-								$mark3 = $item['mark3'];
-								$mark4 = $item['mark4'];
-								$average= $item['average'];
+								$mark1 = $mark['mark1'];
+								$mark2 = $mark['mark2'];
+								$mark3 = $mark['mark3'];
+								$mark4 = $mark['mark4'];
+								$average= $mark['avg'];
+								$status= $mark['status'];
 								?>
-								<a onclick="edit('{{$test}}','{{$firstname}}','{{$lastname}}','{{$gender}}','{{$dob}}','{{$email}}','{{$address}}','{{$telephone}}','{{$subject}}','{{$mark1}}','{{$mark2}}','{{$mark3}}','{{$mark4}}','{{$average}}')" href="#editEmployeeModal" data-target="#editEmployeeModal" class="edit" data-toggle="modal"><i class="material-icons" data-toggle="tooltip" title="Edit">&#xE254;</i></a>
-								
-								<a onclick="deletes('{{$test}}')" href="#deleteEmployeeModal" class="delete" data-toggle="modal"><i class="material-icons" data-toggle="tooltip" title="Delete">&#xE872;</i></a>
-							</td>
-							
-						</tr>
-						
+							@endif
 						@endforeach
-					</tbody>
+
+						<tbody>
+						
+						
+							<tr>
+
+								<td>{{$item['id']}}</td>
+								<td>{{$item['firstname']}}</td>
+								<td>{{$item['lastname']}}</td>
+								<td>{{$item['username']}}</td>
+								<td>{{$item['gender']}}</td>
+								<td>{{$item['date_of_birth']}}</td>
+								<td>{{$item['email']}}</td>
+								<td>{{$item['address']}}</td>
+								<td>{{$item['telephone']}}</td>
+								<td>{{$item['subject']}}</td>
+								<td>{{$mark1}}</td>
+								<td>{{$mark2}}</td>
+								<td>{{$mark3}}</td>
+								<td>{{$mark4}}</td>
+								<td>{{$average}}</td>
+								<td>{{$status}}</td>
+								
+								
+								<td><span class="status text-success">&bull;</span> {{$item['status']}}</td>
+								<td>
+									<?php 
+									$test = $item['id']; 
+									$firstname = $item['firstname']; 
+									$lastname = $item['lastname']; 
+									$username = $item['username'];
+									$gender = $item['gender'];
+									$dob = $item['date_of_birth'];
+									$email = $item['email'];
+									$address = $item['address'];
+									$telephone = $item['telephone'];
+									$subject = $item['subject'];
+									?>
+									<a onclick="edit('{{$test}}','{{$firstname}}','{{$lastname}}','{{$gender}}','{{$dob}}','{{$email}}','{{$address}}','{{$telephone}}','{{$subject}}','{{$mark1}}','{{$mark2}}','{{$mark3}}','{{$mark4}}','{{$status}}')" href="#editEmployeeModal" data-target="#editEmployeeModal" class="edit" data-toggle="modal"><i class="material-icons" data-toggle="tooltip" title="Edit">&#xE254;</i></a>
+									
+									<a onclick="deletes('{{$test}}')" href="#deleteEmployeeModal" class="delete" data-toggle="modal"><i class="material-icons" data-toggle="tooltip" title="Delete">&#xE872;</i></a>
+								</td>
+								
+							</tr>
+							
+						</tbody>
+					@endforeach
 
 				</table>
 				@forelse ($users as $item)
@@ -161,6 +183,7 @@
 		<div class="modal-dialog">
 			<div class="modal-content">
 				<form action="/edit" method="post">
+					
 				@csrf
 					<div class="modal-header">
 						<h4 class="modal-title">Edit Student</h4>
@@ -244,15 +267,10 @@
                             <span style="color:red"> @error('mark4'){{$message}}@enderror</span><br>
                         </div>
                         <div class="form-group">
-                            <label>Average</label>
-                            <input id="average" type="text" class="form-control" name="avg" placeholder="Enter average" >
-                            <span style="color:red"> @error('avg'){{$message}}@enderror</span><br>
-                        </div>
-                        <div class="form-group">
                             <label>Status</label>
         
-                            <select id="status" name="status" class="form-control" class="form-control" value="">
-                            <option value="" disabled selected hidden>Choose status of student</option>
+                            <select  name="status" class="form-control" class="form-control" value="">
+                            <option id="statuss" value="">Choose status of student</option>
                             <option value="Active">Active</option>
                             <option value="inactive">Inactive</option>
                         </select>
@@ -274,6 +292,12 @@
 			<div class="modal-content">
 				<form action="delete" method="POST">
 					@csrf
+					@if(session()->has('error'))
+					<div class="alert" role="alert">
+						<span class="closebtn" onclick="this.parentElement.style.display='none';">&times;</span> 
+						{{ session()->get('error') }}
+					</div>
+				@endif
 					<div class="modal-header">
 						<h4 class="modal-title">Delete Student</h4>
 						<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
@@ -298,7 +322,7 @@
 			var check = document.getElementById('test').value = clr;
 			console.log(check);
 		}
-		function edit(clr,firstname,lastname,gender,dob,email,address,telephone,subject,mark1,mark2,mark3,mark4,average ) {
+		function edit(clr,firstname,lastname,gender,dob,email,address,telephone,subject,mark1,mark2,mark3,mark4,status ) {
 			document.getElementById('editEmployeeModal').style.display = 'block'
 			document.getElementById('firstname').value = firstname
 			document.getElementById('lastname').value = lastname
@@ -315,7 +339,8 @@
 			document.getElementById('mark2').value = mark2
 			document.getElementById('mark3').value = mark3
 			document.getElementById('mark4').value = mark4
-			document.getElementById('average').value = average
+			document.getElementById('statuss').innerText = status
+			document.getElementById('statuss').value = status
 			document.getElementById('edit-id').value = clr
 			
 			// console.log(firstname);

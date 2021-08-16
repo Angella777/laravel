@@ -7,7 +7,7 @@
   <title>Angee.Edu.com/ @yield('title')</title>
   <link rel="stylesheet" type="text/css" href="{{ URL::asset('css/main.css') }}">
   <link rel="stylesheet" type="text/css" href="{{ URL::asset('css/review.css') }}">
-<!-- Start WOW Slider.com HEAD section -->
+
 <link rel="stylesheet" type="text/css" href="engine1/style.css" />
 <script type="text/javascript" src="engine1/jquery.js"></script>
 <!-- End WOW Slider.com HEAD section -->
@@ -26,6 +26,7 @@
 </head>
 
 <body>
+  
   <div class="topnav">
     <a href="/"><img src="logoo.png" width="40" height="30"></a>
     <a>Angee.Edu.com</a>
@@ -36,9 +37,15 @@
     <a href="Log-in" class="" role="button">Log-in</a>
     <a href={{route('register')}} class="" role="button">Register</a>
   </div>
+  @if(session()->has('error'))
+  <div class="alert" role="alert">
+      <span class="closebtn" onclick="this.parentElement.style.display='none';">&times;</span> 
+      {{ session()->get('error') }}
+  </div>
+@endif
   <div class="slideshow-container">
   <div class="mySlides fade">
-<div class="text">Succuess</div>
+<div class="text">Success</div>
   <div class="numbertext">BELEIVING IN YOUR FUTURE </div>
   <img src="../hand.jpg" style="width:100%">
   

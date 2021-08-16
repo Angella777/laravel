@@ -17,7 +17,27 @@ class userDisplayController extends Controller
 
     function showData($id){
         $checkinfo= User::find($id);
-        return view('profilepage',['checkinfo'=>$checkinfo]);
+        $mark_2 ="";
+        $mark_3 ="";
+        $mark_4 ="";
+        $avg ="";
+        $get_marks = mark::where('user_id','=',$id)->get();
+        // dd();
+        foreach ($get_marks as $marks_get ) {
+            $mark_1 =$marks_get->mark1;
+            $mark_2 =$marks_get->mark2;
+            $mark_3 =$marks_get->mark3;
+            $mark_4 =$marks_get->mark4;
+            $avg =$marks_get->avg;
+        }
+        return view('profilepage',[
+            'checkinfo'=>$checkinfo,
+            'mark1' =>$mark_1,
+            'mark2' =>$mark_2,
+            'mark3' =>$mark_3,
+            'mark4' =>$mark_4,
+            'avg' =>$avg,
+        ]);
     }
     // public function check(Request $request){
     //     $info=$request->all();
@@ -34,6 +54,7 @@ class userDisplayController extends Controller
     //     //     'profileImage' => 'required | mimes:png,jpg,jpeg | min:0 | max: 5048'
     //     // ]);
     function update(Request $req){
+        // dd($req);
         $checkinfo= User::find($req->id);
         $checkinfo->firstname=$req->firstname;
         $checkinfo->lastname=$req->lastname;
@@ -41,11 +62,11 @@ class userDisplayController extends Controller
         $checkinfo->address=$req->address;
         $checkinfo->email=$req->email;
         $checkinfo->telephone=$req->phone;
-        $checkinfo->password=$req->password;
+        // $checkinfo->password=$req->password;
         
         $checkinfo->save();
            
-            return back()->with('profilepagedisplay','Your profile updated');
+            return back()->with('error','Your profile updated');
         
     }
  
@@ -53,8 +74,9 @@ class userDisplayController extends Controller
     function delete($id)
     {
         $data=User::find($id);
+        // dd($data);
         $data->delete($id);
-        return redirect('profiledelete')->with('status','Your account has deleted');
+        return redirect('/')->with('error','Your account has deleted');
 
 
     }

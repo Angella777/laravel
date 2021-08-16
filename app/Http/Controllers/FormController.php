@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\mark;
 use Illuminate\Http\Request;
 use App\Models\User;
 use Illuminate\Support\Facades\Hash;
@@ -22,33 +23,56 @@ class FormController extends Controller
             'user_type' => 'required ',
             'password' => 'required | min: 6',
         ]);
-        $checkinfo = User::where('username','=',$request->username)->first();
-        if(!$checkinfo){
-            $fail= 'Username not registered';
-            return view('Log-in',['fail'=>$fail]);
-        }else{
-            if(Hash::check($request->password,$checkinfo->password)){
-                $request->session()->put('loggeduser', $checkinfo->id);
-                // dd($request->user_type);
-                if($checkinfo->user_type != $request->user_type){
-                    $fail1= 'Please select correct user type';
-                    return view('Log-in',['fail1'=>$fail1]);
-                } else {
-                    if($checkinfo->user_type === 'Admin'){
-                    
-                        return redirect('/admin');
-                
-                    }elseif($checkinfo->user_type === 'User'){
-                        return view('profilepagedisplay',['checkinfo'=> $checkinfo]);
+        if (Auth::attempt($validationData)) {
+            $request->session()->regenerate();
+            $checkinfo = User::where('username','=',$request->username)->first();
+            if($checkinfo->user_type != $request->user_type){
+                $fail1= 'Please select correct user type';
+                return view('Log-in',['fail1'=>$fail1]);
+            } else {
+                if($checkinfo->user_type === 'Admin'){
+                    return redirect('/admin');
+            
+                }elseif($checkinfo->user_type === 'User'){
+                    $check_status = mark::where('user_id','=',Auth::user()->id)->get();
+                    foreach ($check_status as $mark ) {
+                        if ($mark->status != "Active") {
+                            return back()->with('error', 'This Account Has Been Deactivated');
+                        }
                     }
+                    // dd($check_status);
+                    return redirect('/user/'.$request->username);
                 }
-                
-                
-            }else{
-                $fail='Password is incorrect';
-                return view('Log-in',['fail'=>$fail]);
             }
         }
+        $fail= 'Username not registered';
+        return view('Log-in',['fail'=>$fail]);
+        // if(!$checkinfo){
+        //     $fail= 'Username not registered';
+        //     return view('Log-in',['fail'=>$fail]);
+        // }else{
+        //     if(Hash::check($request->password,$checkinfo->password)){
+        //         $request->session()->put('loggeduser', $checkinfo->id);
+        //         // dd($request->user_type);
+        //         if($checkinfo->user_type != $request->user_type){
+        //             $fail1= 'Please select correct user type';
+        //             return view('Log-in',['fail1'=>$fail1]);
+        //         } else {
+        //             if($checkinfo->user_type === 'Admin'){
+                    
+        //                 return redirect('/admin');
+                
+        //             }elseif($checkinfo->user_type === 'User'){
+        //                 return view('profilepagedisplay',['checkinfo'=> $checkinfo]);
+        //             }
+        //         }
+                
+                
+        //     }else{
+        //         $fail='Password is incorrect';
+        //         return view('Log-in',['fail'=>$fail]);
+        //     }
+        // }
         // return redirect ('Log-in')->with('status','Your are sucessfully logged in');
     }
     public function show_register()
@@ -96,10 +120,11 @@ class FormController extends Controller
         
     }
 public function logout(){
-if (session()->has('loggeduser'))
-{
-    session()->pull('loggeduser');
+// if (session()->has('loggeduser'))
+// {
+//     session()->pull('loggeduser');
+// }}
+    Auth::logout();
     return view('Log-in');
-}}
-
+}
 }

@@ -41,7 +41,12 @@
    
 </style>
 <hr>
-@include('sweet::alert')
+@if(session()->has('error'))
+<div class="alert" role="alert">
+    <span class="closebtn" onclick="this.parentElement.style.display='none';">&times;</span> 
+    {{ session()->get('error') }}
+</div>
+@endif
 <a  class="btn btn-dark" href={{route('logout')}}>logout</a>
     <div class="container bootstrap snippet">
         <div class="row">
@@ -53,6 +58,8 @@
               
 
       <div class="text-center">
+
+        {{-- {{$checkinfo['image']}} --}}
       <img src="image/{{$checkinfo['image']}}" style="max-width: 70%;  border-radius: 50%; " alt="user image" />
       
     
@@ -68,16 +75,16 @@
           
           <ul class="list-group">
             <li class="list-group-item text-muted">Marks <i class="fa fa-dashboard fa-1x"></i></li>
-            <li class="list-group-item text-right"><span class="pull-left"><strong>Mark 1</strong></span> 125</li>
-            <li class="list-group-item text-right"><span class="pull-left"><strong>Mark 2</strong></span> 13</li>
-            <li class="list-group-item text-right"><span class="pull-left"><strong>Mark 3</strong></span> 37</li>
-            <li class="list-group-item text-right"><span class="pull-left"><strong>Mark 4</strong></span> 78</li>
+            <li class="list-group-item text-right"><span class="pull-left"><strong>Mark 1</strong></span> {{$mark1}}</li>
+            <li class="list-group-item text-right"><span class="pull-left"><strong>Mark 2</strong></span> {{$mark2}}</li>
+            <li class="list-group-item text-right"><span class="pull-left"><strong>Mark 3</strong></span> {{$mark3}}</li>
+            <li class="list-group-item text-right"><span class="pull-left"><strong>Mark 4</strong></span> {{$mark4}}</li>
           </ul> 
                
           <div class="panel panel-default">
             <div class="panel-heading">AVERAGE</div>
             <div class="panel-body">
-            	<i class="fa fa-facebook fa-2x"></i> <i class="fa fa-github fa-2x"></i> <i class="fa fa-twitter fa-2x"></i> <i class="fa fa-pinterest fa-2x"></i> <i class="fa fa-google-plus fa-2x"></i>
+            	<i class="fa fa-facebook fa-2x"></i> <i class="fa fa-github fa-2x"></i>{{$avg}} <i class="fa fa-twitter fa-2x"></i> <i class="fa fa-pinterest fa-2x"></i> <i class="fa fa-google-plus fa-2x"></i>
             </div>
           </div>
           
@@ -150,8 +157,8 @@
                       <div class="form-group">
                            <div class="col-xs-12">
                                 <br>
-                              	<a class="btn btn-primary" href={{"profilepage/".$checkinfo['id']}}>Edit Profile</a>
-                                <a  class="btn btn-danger" href={{"profiledelete/".$checkinfo['id']}}>Delete Profile</a></button>
+                              	<a class="btn btn-primary" href={{"profilepage/".$checkinfo['id'].""}}>Edit Profile</a>
+                                <a  class="btn btn-danger" href={{"profiledelete/".$checkinfo['id'].""}}>Delete Profile</a></button>
                             </div>
                       </div>
                 	</form>

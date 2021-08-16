@@ -5,18 +5,22 @@
     <meta charset="UTF-8">
     <meta name="crsf-token" content="{{csrf_token()}}">
     <title>Log-in @yield('title')</title>
+   
     <link rel="stylesheet" type="text/css" href="{{ URL::asset('css/log-in.css') }}">
+    
 </head>
+
 <body>
-    <div class="container mt-4">
-        @if(session('status'))
-    </div>
-    <div class="alert alert-success">
-        {{session('status')}}
-    </div>
-    @endif
+
+    @if(session()->has('error'))
+                <div class="alert" role="alert">
+                    <span class="closebtn" onclick="this.parentElement.style.display='none';">&times;</span> 
+                    {{ session()->get('error') }}
+                </div>
+            @endif
     <div class="card">
         <div class="loginBox">
+            
             <h2>LOGIN </h2>
             @if (isset($fail))
             <span style="color:red">{{$fail}}</span>
