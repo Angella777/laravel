@@ -17,6 +17,7 @@ class userDisplayController extends Controller
 
     function showData($id){
         $checkinfo= User::find($id);
+        $mark_1 ="";
         $mark_2 ="";
         $mark_3 ="";
         $mark_4 ="";
